@@ -9,7 +9,7 @@ interface ActionBtnProps{
 const ActionBtn:React.FC<ActionBtnProps>= ({icon:Icon, onClick, disabled, title}) => {
     return (
     <button 
-   title= {title}
+    title= {title}
     onClick= {onClick}
     disabled= {disabled}
     className= {`flex items-center justify-center rounded cursor-pointer w-[40px] h-[30px] text-slate-700 border border-slate-400

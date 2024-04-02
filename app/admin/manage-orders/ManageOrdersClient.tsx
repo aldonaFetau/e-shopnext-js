@@ -23,11 +23,11 @@ type ExtendedOrder = Order & {
 }
 
 const ManageOrdersClient:React.FC<ManageOrdersClientProps> = ({orders}) => {
-
+   
   
     let rows:any = []
     if(orders){
-    rows=orders.map((order)=>{
+    rows = orders.map((order)=>{
     return {
         id: order.id,
         customer: order.user.name,
@@ -51,10 +51,12 @@ const ManageOrdersClient:React.FC<ManageOrdersClientProps> = ({orders}) => {
     },
     {field:'paymentStatus', headerName:'Payment Status', width: 120,
     renderCell:(params)=>{
+        debugger;
+        console.log("paramsss", params)
         return (<div className="h-full flex items-center">{params.row.paymentStatus ==='pending'?
         (<Status text="pending" icon={MdAccessTimeFilled} bg="bg-slate-200" color="text-slate-700"/>):
-        params.row.paymentStatus ==='completed'?
-        (<Status text="completed" icon={MdDeliveryDining} bg="bg-purple-200" color="text-purple-700"/>):
+        params.row.paymentStatus ==='complete'?
+        (<Status text="completed" icon={MdDone} bg="bg-green-200" color="text-green-700"/>):
         <></>}</div>)
        }
     },

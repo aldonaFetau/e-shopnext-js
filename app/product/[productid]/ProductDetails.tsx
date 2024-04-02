@@ -7,10 +7,11 @@ import SetQuantity from "@/app/components/products/SetQuantity";
 import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/utils/formatPrice";
 import { Rating } from "@mui/material";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { useCallback, useEffect, useState } from "react";
-import { MdCheckCircle } from "react-icons/md";
+import { MdArrowBack, MdCheckCircle } from "react-icons/md";
 
 interface ProductDetailsProp{
 product: any
@@ -148,11 +149,16 @@ const ProductDetails :React.FC<ProductDetailsProp> = ({product}) => {
                 handleQtyDecrease={handleQtyDecrease}/>
                 <Horizontal/>
                 <div className="max-w-[300px]">
-                <Button
+                {product.inStock &&<Button
                 label="Add To Cart"
-                onClick={()=>handleAddProductToCart(cartProduct)}/>
+                onClick={()=>handleAddProductToCart(cartProduct)}/>}
                 </div>
                 </>}
+                <div>
+                <Link href={"/"} className="text-slate-500 flex items-center gap-1 mt-2">
+            <MdArrowBack/>
+            <span>Continue Shopping</span>
+            </Link></div>
    
         </div>
         </div> );

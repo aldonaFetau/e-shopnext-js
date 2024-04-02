@@ -30,7 +30,7 @@ const LoginForm:React.FC<LoginFormProps> = ({currentUser}) => {
     const router = useRouter();
     
     useEffect(()=>{
-        //when the page first loads check if we are already logged in and redirect to home page
+     
         if(currentUser){
             router.push("/")
             router.refresh();
@@ -74,7 +74,14 @@ const LoginForm:React.FC<LoginFormProps> = ({currentUser}) => {
     id="email"
     label="Email"
     disabled={isLoading}    
-    register={register}//register will make use of id to register the input field
+    register={register}
+    {...register('email', {
+        required: 'Email is required',
+        pattern: {
+            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            message: 'Please enter a valid email',
+        },
+    })}
     errors={errors}
     required
     />

@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { SafeUser } from "@/types";
 
 
+
 interface RegisterFormProps {
     currentUser:SafeUser|null
 }
@@ -30,7 +31,7 @@ const RegisterForm:React.FC<RegisterFormProps> = ({currentUser}) => {
     })
     const router = useRouter();
     useEffect(()=>{
-        //when the page first loads check if we are already logged in and redirect to home page
+
         if(currentUser){
             router.push("/")
             router.refresh();
@@ -61,7 +62,7 @@ const RegisterForm:React.FC<RegisterFormProps> = ({currentUser}) => {
 
 
         })
-//after this signin is called it goes ti [...nextauth] to make use of the credentials logic to login the user
+
        })
        .catch(()=>{
 
@@ -93,7 +94,14 @@ const RegisterForm:React.FC<RegisterFormProps> = ({currentUser}) => {
     id="email"
     label="Email"
     disabled={isLoading}    
-    register={register}//register will make use of id to register the input field
+    register={register}
+    {...register('email', {
+        required: 'Email is required',
+        pattern: {
+            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            message: 'Please enter a valid email',
+        },
+    })}
     errors={errors}
     required
     />

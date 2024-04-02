@@ -31,22 +31,18 @@ const[cartTotalAmount, setCartTotalAmount] = useState(0);
 const [cartProducts, setCartProducts] = useState<CartProductType[]|null>(
     
     () => {
-    //e inicializojme ne varesi te localstorage dhe jo direkt null per te evituar glichin kur bejme refresh
-    //(nese eshte null by default kur kemi cart items per pak seconda del butoni add to cart dhe pastaj view cart)
- //   if (typeof window !== 'undefined') {
+
     const cartItems: any = localStorage.getItem('eShopCartItems');
     return cartItems ? JSON.parse(cartItems) : null;
-   // }
+  
 }
 );
 const [paymentIntent, setPaymentIntent]=useState<string|null>(null);
 
 useEffect(()=>{
-   // if (typeof window !== 'undefined') {// to avoid error localstorage undefined so we make sure we run this only on the client not server
+  
 const cartItems:any = localStorage.getItem('eShopCartItems');
 const cProducts:CartProductType[]|null = JSON.parse(cartItems);
-//if we complete payment we clear payment intent from local storage, 
-//if we dont complete payment and come back again we update it by getting it from localstorage and saving it again whenever we make a change to our order
 const eshopPaymentIntent:any = localStorage.getItem('eshopPaymentIntent')
 const paymentIntent:string|null= JSON.parse(eshopPaymentIntent);
 
@@ -79,7 +75,7 @@ const handleAddProductToCart = useCallback((product:CartProductType)=>{
     setCartProducts((prev)=>{
     let updatedCart;
   
-    if(prev){//if we have cartProducts
+    if(prev){
 
     updatedCart=[...prev, product]
 
@@ -88,7 +84,7 @@ const handleAddProductToCart = useCallback((product:CartProductType)=>{
     {
         updatedCart=[product]
     }
-    toast.success('Product Added To Cart')
+  
     localStorage.setItem('eShopCartItems', JSON.stringify(updatedCart));
 return updatedCart;
     })

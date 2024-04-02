@@ -42,6 +42,7 @@ case 'charge.succeeded':
         where:{payment_intent_id: charge.payment_intent},
         data:{status:'complete', address:charge.shipping?.address}
     })
+    console.log("payment intent status update", charge.payment_intent)
  }
 break;
 default: console.log('Unhandled event type' + event.type)

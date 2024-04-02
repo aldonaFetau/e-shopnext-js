@@ -8,12 +8,15 @@ const  SearchBar = () => {
 
     const {register, handleSubmit, reset, formState:{errors}}= useForm<FieldValues>({
         defaultValues:{
-            searchTerm:""
+            searchTerm: ""
         }
     });
-    const router = useRouter()
+    const router = useRouter();
+    
     const onSubmit:SubmitHandler<FieldValues> = async(data)=>{
+     
     if(!data.searchTerm) return router.push('/');
+    
     const url = queryString.stringifyUrl({
             url:'/',
             query:{
@@ -21,9 +24,11 @@ const  SearchBar = () => {
                  }
           },{skipNull:true})
           router.push(url);
+       
           reset();
 
     }
+    
     return ( <div className="flex items-center">
         <input 
         {...register('searchTerm')}

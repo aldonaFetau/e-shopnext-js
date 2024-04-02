@@ -6,7 +6,9 @@ import Container from "../components/Container";
 import BarGraph from "./BarGraph";
 import getGraphData from "@/actions/getGraphData";
 
+
 const Admin = async () => {
+ 
     const products = await getProducts({category:null});
     const orders:any  = await getOrders();
     const users:any = await getUsers();

@@ -23,7 +23,7 @@ interface ManageProductsClientProps{
 
 const ManageProductsClient:React.FC<ManageProductsClientProps> = ({products}) => {
 
-  
+
     let rows:any = []
     if(products){
 rows=products.map((product)=>{

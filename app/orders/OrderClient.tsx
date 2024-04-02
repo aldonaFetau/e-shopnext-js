@@ -5,13 +5,15 @@ import {DataGrid, GridColDef} from "@mui/x-data-grid"
 import { formatPrice } from "@/utils/formatPrice";
 import Heading from "@/app/components/Heading";
 import Status from "@/app/components/Status";
-import { MdAccessTimeFilled, MdCached, MdClose, MdDelete, MdDeliveryDining, MdDone, MdRemoveRedEye } from "react-icons/md";
+import { MdAccessTimeFilled, MdArrowBack, MdCached, MdClose, MdDelete, MdDeliveryDining, MdDone, MdRemoveRedEye } from "react-icons/md";
 import ActionBtn from "@/app/components/ActionBtn";
 import { useCallback } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import  { useRouter } from "next/navigation";
 import moment from "moment";
+import NullData from "../components/NullData";
+import Link from "next/link";
 
 
 
@@ -53,8 +55,8 @@ const OrdersClient:React.FC<OrdersClientProps> = ({orders}) => {
     renderCell:(params)=>{
         return (<div className="h-full flex items-center">{params.row.paymentStatus ==='pending'?
         (<Status text="pending" icon={MdAccessTimeFilled} bg="bg-slate-200" color="text-slate-700"/>):
-        params.row.paymentStatus ==='completed'?
-        (<Status text="completed" icon={MdDeliveryDining} bg="bg-purple-200" color="text-purple-700"/>):
+        params.row.paymentStatus ==='complete'?
+        (<Status text="completed" icon={MdDone} bg="bg-green-200" color="text-green-700"/>):
         <></>}</div>)
        }
     },
@@ -81,11 +83,21 @@ const OrdersClient:React.FC<OrdersClientProps> = ({orders}) => {
     },
 
   ]
-
+  if(orders.length===0){
+    return (<div className="flex flex-col items-center ">
+            <div className="text-2xl">No orders yet</div>
+            <div>
+                <Link href={"/"} className="text-slate-500 flex items-center gap-1 mt-2">
+            <MdArrowBack/>
+            <span>Start Shopping</span>
+            </Link></div>
+        </div>)
+  }
 
     return ( 
  
 
+        
 
         <div className="max-w-[1150px] m-auto text-xl">
                 <div className="mb-4 mt-8">

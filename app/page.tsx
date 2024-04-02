@@ -6,14 +6,17 @@ import ProductCard from "./components/products/ProductCard";
 import getProducts, { IProductParams } from "@/actions/getProducts";
 import NullData from "./components/NullData";
 
+
 interface HomeProps{
   searchParams: IProductParams
 }
 
 export default async function Home({searchParams}:HomeProps) {
-  console.log("product filter", searchParams)
+
+console.log(searchParams,"search params from url")
 const products = await getProducts(searchParams);
-console.log("produktet 2", products)
+
+
 if(products.length===0){
   return <NullData title= "No products found. Click 'All' to clear filters"/>
 }

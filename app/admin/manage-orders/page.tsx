@@ -1,3 +1,4 @@
+
 import Container from "@/app/components/Container";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import NullData from "@/app/components/NullData";
@@ -11,6 +12,7 @@ const ManageOrders = async() => {
     if(!currentUser || currentUser.role!== 'ADMIN'){
         return <NullData title='Oops! Access Denied'/> ;
     }
+    console.log("orderssss",orders)
     
     return ( 
         <div className="p-8">

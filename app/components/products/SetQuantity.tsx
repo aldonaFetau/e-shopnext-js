@@ -1,5 +1,5 @@
 "use client"
-//this component is used in cart component and in product details
+
 import { CartProductType } from "@/app/product/[productid]/ProductDetails";
 
 interface setQtyProps{

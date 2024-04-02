@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import {StripeElementsOptions, loadStripe} from '@stripe/stripe-js'
 import {Elements} from '@stripe/react-stripe-js'
 import CheckoutForm from "./CheckoutForm";
-import { dividerClasses } from "@mui/material";
 import Button from "../components/Button";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
@@ -65,9 +64,6 @@ const CheckoutClient = () => {
         })
 
     }
-
-
-
 
    },[cartProducts] )
    

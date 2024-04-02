@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string,{
 
     apiVersion:'2023-10-16'
 })
-//calcualte total order amount on the server (until now we did it only on the client)
+
 const calculateOrderAmount = (items:CartProductType[])=>{
 const totalPrice = items.reduce((acc, item)=>{
 
